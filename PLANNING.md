@@ -28,7 +28,7 @@
 # Step 3: API Design
 | Method | Endpoint    | Description                |
 | :-------- | :------- | :------------------------- |
-| `GET` | `/categories` | Fetch all categories in a hierarchical tree structure. |
+| `GET` | `/categories/:parent_id` | Fetch all categories in a hierarchical tree structure. |
 | `POST` | `/categories` | Create a new category. |
 | `PUT` | `/categories/:id` | Update an existing category's name or parent-child relationship. |
 | `DELETE` | `/categories/:id` | Delete a category and all its child categories. |
