@@ -1,8 +1,10 @@
 const mongodb = require('../config/database');
-
+const appRouter = require('../routes/app');
 const app = require('express')();
 const PORT = 3000;
-const SERVER_ADDRESS = "http://localhost"
+const SERVER_ADDRESS = "http://localhost";
+
+app.use('/api',appRouter)
 
 const connectMongo = async () => {
     try{
@@ -15,5 +17,4 @@ const connectMongo = async () => {
         console.log(err)
     }
 }
-
 connectMongo()
