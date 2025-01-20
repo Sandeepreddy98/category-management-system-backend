@@ -6,8 +6,6 @@ const Category = require("../models/Category");
  */
 const cleanupOrphanedCategories = async () => {
   try {
-    console.log("Starting cleanup of orphaned categories...");
-
     // Find orphaned categories using aggregation
     const orphanedCategories = await Category.aggregate([
       {
@@ -38,10 +36,6 @@ const cleanupOrphanedCategories = async () => {
 
       // Delete orphaned categories
       await Category.deleteMany({ _id: { $in: idsToDelete } });
-
-      console.log(`Deleted ${idsToDelete.length} orphaned categories.`);
-    } else {
-      console.log("No orphaned categories found.");
     }
   } catch (error) {
     console.error("Error cleaning up orphaned categories:", error);
@@ -49,7 +43,9 @@ const cleanupOrphanedCategories = async () => {
 };
 
 // Schedule the CRON job to run every hour
-cron.schedule("0 * * * *", async () => {
+cron.schedule("0 0 * * *", async () => {
   await cleanupOrphanedCategories();
   console.log("Orphaned categories cleanup job executed.");
 });
+
+module.exports = cleanupOrphanedCategories

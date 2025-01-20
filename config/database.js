@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
+require("dotenv").config();
 
 const mongodb = async () => {
+    if (process.env.NODE_ENV === "test") {
+        console.log("Skipping database connection in test mode.");
+        return; // Do nothing in test mode
+      }
     try{
-        await mongoose.connect("mongodb+srv://gsandeepreddy98:qYUOt91qlTprfvfo@namastedev.eo9vs.mongodb.net/category-management-system");
+        await mongoose.connect(process.env.MONGO_URI);
     }catch(err){
         throw new Error("Connecting to database failed! : ",err);
     }

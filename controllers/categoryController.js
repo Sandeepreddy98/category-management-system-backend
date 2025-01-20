@@ -31,7 +31,7 @@ const getCategories = async (req, res) => {
     const { parent_id } = req.params;
     const categories = await Category.find({ parent_id }).lean();
     if (!categories.length) {
-      return res.status(404).json({ ok : false,message: "No categories found" });
+      return res.status(200).json({ ok : true,message: "No categories found" });
     }
     res.status(200).json({ ok : true,message : "Categories fetched successfully!",data : categories});
   } catch (error) {
@@ -47,18 +47,33 @@ const getCategories = async (req, res) => {
 const createCategory = async (req, res) => {
   try {
     const { name, parent_id } = req.body;
-    if(!mongoose.Types.ObjectId.isValid(parent_id)){
-      res.status(400).json({ ok : false,message: "Invalid parent_id" });
+
+    // Validate parent_id
+    if (!mongoose.Types.ObjectId.isValid(parent_id)) {
+      return res.status(400).json({ ok: false, message: "Invalid parent_id" });
     }
-    const category = await Category.findById(parent_id)
-    if(!category){
-      res.status(404).json({ ok : false,message: "Invalid parent_id" });
+
+    // Check if parent category exists
+    const category = await Category.findById(parent_id);
+    if (!category) {
+      return res.status(404).json({ ok: false, message: "Parent category not found" });
     }
+
+    // Create the new category
     const newCategory = new Category({ name, parent_id });
     await newCategory.save();
-    res.status(201).json({ok : true, message: "Category created", category : newCategory });
+
+    // Send success response
+    return res.status(201).json({
+      ok: true,
+      message: "Category created",
+      category: newCategory,
+    });
   } catch (err) {
-    res.status(500).json({ ok : false,message: err.message });
+    // Handle unexpected errors
+    if (!res.headersSent) {
+      return res.status(500).json({ ok: false, message: err.message });
+    }
   }
 };
 
