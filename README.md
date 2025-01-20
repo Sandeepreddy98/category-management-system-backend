@@ -30,7 +30,7 @@ This is a basic Node.js application that serves content on `localhost:4000`.
 2. The application will be running at `http://localhost:4000`.
 
 ## API Endpoints
-Checkout planning for API documentation `https://github.com/Sandeepreddy98/category-management-system-backend/blob/master/PLANNING.md`
+Checkout [Planning] (PLANNING.md) for API documentation `https://github.com/Sandeepreddy98/category-management-system-backend/blob/master/PLANNING.md`
 ## Testing
 
 - Run the tests using:
@@ -40,4 +40,4 @@ Checkout planning for API documentation `https://github.com/Sandeepreddy98/categ
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](PLANNING.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
