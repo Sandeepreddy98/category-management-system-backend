@@ -30,7 +30,7 @@ This is a basic Node.js application that serves content on `localhost:4000`.
 2. The application will be running at `http://localhost:4000`.
 
 ## API Endpoints
-Checkout [Planning](PLANNING.md) for API documentation or `https://github.com/Sandeepreddy98/category-management-system-backend/blob/master/PLANNING.md`
+Checkout [Planning](PLANNING.md) for API documentation or `https://github.com/Sandeepreddy98/wallet-management-system-backend/blob/master/PLANNING.md`
 ## Testing
 
 - Run the tests using:
